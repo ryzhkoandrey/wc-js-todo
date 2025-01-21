@@ -4,10 +4,13 @@ const taskInput = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
 const emptyList = document.querySelector('#emptyList');
 
+// Добавление задачи
 form.addEventListener('submit', addTask);
 
-// Функции
+// Удаление задачи
+tasksList.addEventListener('click', deleteTask);
 
+// Функции
 function addTask(event) {
 	// Отменяем отправку формы
 	event.preventDefault();
@@ -37,9 +40,22 @@ function addTask(event) {
 	taskInput.value = "";
 	taskInput.focus();
 
-	// Проверка.Если в списке задач более 1 - го элемента, скрываем блок "Список дел пуст"
+	// Проверка. Если в списке задач более 1 - го элемента, скрываем блок "Список дел пуст"
 	if(tasksList.children.length > 1) {
 		emptyList.classList.add('none');
+	}
+}
+
+function deleteTask(event) {
+	// Проверяем что клик был по кнопке "удалить задачу"
+	if(event.target.dataset.action === 'delete') {
+		const parentNode = event.target.closest('li');
+		parentNode.remove();
+	}
+
+	// Проверка. Если в списке задач 1-ин элемент, показываем блок "Список дел пуст"
+	if(tasksList.children.length === 1) {
+		emptyList.classList.remove('none');
 	}
 }
 
