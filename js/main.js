@@ -46,9 +46,7 @@ function addTask(event) {
 
 function deleteTask(event) {
 	// Проверяем если клик был НЕ по кнопке "удалить задачу"
-	if(event.target.dataset.action !== 'delete') {
-		return;
-	}
+	if(event.target.dataset.action !== 'delete') return;
 
 	// Если клик был по кнопке "удалить задачу"
 	const parentNode = event.target.closest('li');
@@ -61,12 +59,13 @@ function deleteTask(event) {
 }
 
 function doneTask(event) {
-	// Проверяем что клик был по кнопке "задача выполнена"
-	if(event.target.dataset.action === 'done') {
-		const parentNode = event.target.closest('.list-group-item');
-		const taskTitle = parentNode.querySelector('.task-title');
-		taskTitle.classList.toggle('task-title--done');
-	}
+	// Проверяем что клик был НЕ по кнопке "задача выполнена"
+	if(event.target.dataset.action !== 'done') return;
+
+	// Если клик был по кнопке "задача выполнена"
+	const parentNode = event.target.closest('.list-group-item');
+	const taskTitle = parentNode.querySelector('.task-title');
+	taskTitle.classList.toggle('task-title--done');
 }
 
 	// Описываем задачу в виде объекта
