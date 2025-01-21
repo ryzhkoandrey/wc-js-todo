@@ -4,7 +4,11 @@ const taskInput = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
 const emptyList = document.querySelector('#emptyList');
 
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', addTask);
+
+// Функции
+
+function addTask(event) {
 	// Отменяем отправку формы
 	event.preventDefault();
 
@@ -37,9 +41,7 @@ form.addEventListener('submit', function(event) {
 	if(tasksList.children.length > 1) {
 		emptyList.classList.add('none');
 	}
-});
-
-// Функции
+}
 
 	// Описываем задачу в виде объекта
 	
