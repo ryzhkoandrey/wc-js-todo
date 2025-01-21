@@ -2,6 +2,7 @@
 const form = document.querySelector('#form');
 const taskInput = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
+const emptyList = document.querySelector('#emptyList');
 
 form.addEventListener('submit', function(event) {
 	// Отменяем отправку формы
@@ -31,6 +32,11 @@ form.addEventListener('submit', function(event) {
 	// Очищаем поле ввода и возвращаем на него фокус
 	taskInput.value = "";
 	taskInput.focus();
+
+	// Проверка.Если в списке задач более 1 - го элемента, скрываем блок "Список дел пуст"
+	if(tasksList.children.length > 1) {
+		emptyList.classList.add('none');
+	}
 });
 
 // Функции
