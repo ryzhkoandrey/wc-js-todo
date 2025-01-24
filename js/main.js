@@ -30,6 +30,9 @@ function addTask(event) {
 	// Добавляем задачу в массив с задачами
 	tasks.push(newTask);
 
+	// Сохраняем список задач в хранилище браузера localStorage
+	saveToLocalStorage();
+
 	// Формируем CSS класс
 	const cssClass = newTask.done ? 'task-title task-title--done' : 'task-title';
 
@@ -71,6 +74,9 @@ function deleteTask(event) {
 	// Удаляем задачу через фильтрацию массива
 	tasks = tasks.filter((task) => task.id !== id);
 
+	// Сохраняем список задач в хранилище браузера localStorage
+	saveToLocalStorage();
+
 	// Удаляем задачу из разметки
 	parentNode.remove();
 
@@ -87,6 +93,9 @@ function doneTask(event) {
 	const id = Number(parentNode.id);
 	const task = tasks.find((task) => task.id === id);
 	task.done = !task.done;
+
+	// Сохраняем список задач в хранилище браузера localStorage
+	saveToLocalStorage();
 
 	const taskTitle = parentNode.querySelector('.task-title');
 	taskTitle.classList.toggle('task-title--done');
@@ -109,30 +118,6 @@ function checkEmptyList() {
 	}
 }
 
-// Сохраняем список задач в хранилище браузера localStorage
-
-// Рендерим задачу на странице
-
-// Очищаем поле ввода и возвращаем на него фокус
-
-// Проверяем если клик был НЕ по кнопке "удалить задачу"
-
-// Определяем ID задачи
-
-// Удаляем задча через фильтрацию массива
-
-// Сохраняем список задач в хранилище браузера localStorage
-
-// Удаляем задачу из разметки
-
-// Проверяем что клик был НЕ по кнопке "задача выполнена"
-
-// Определяем ID задачи
-
-// Сохраняем список задач в хранилище браузера localStorage
-
-// Формируем CSS класс
-
-// Формируем разметку для новой задачи
-
-// Добавляем задачу на страницу
+function saveToLocalStorage() {
+	localStorage.setItem('tasks', JSON.stringify(tasks));
+}
