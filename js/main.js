@@ -87,8 +87,13 @@ function doneTask(event) {
 	// Проверяем что клик был НЕ по кнопке "задача выполнена"
 	if (event.target.dataset.action !== 'done') return;
 
-	// Если клик был по кнопке "задача выполнена"
 	const parentNode = event.target.closest('.list-group-item');
+
+	// Определяем ID задачи
+	const id = Number(parentNode.id);
+	const task = tasks.find((task) => task.id === id);
+	task.done = !task.done;
+
 	const taskTitle = parentNode.querySelector('.task-title');
 	taskTitle.classList.toggle('task-title--done');
 }
